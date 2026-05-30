@@ -31,7 +31,7 @@ To ensure a consistent and reproducible environment, this project is packaged fo
 
 
 ```
-pip install pandas numpy matplotlib scikit-learn shap scikit-optimize tqdm
+pip install pandas numpy matplotlib scikit-learn shap scikit-optimize tqdm cupy
 ```
 
 ```bash
@@ -42,5 +42,26 @@ docker run --gpus all -d --rm \
   -w /workspace/my_project_container \
   my_custom_tf_env:latest \
   jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser --NotebookApp.token=''
-'''
+```
+The dataset can be directly imported using:
 
+```
+pip install ucimlrepo
+```
+```
+from ucimlrepo import fetch_ucirepo 
+  
+# fetch dataset 
+superconductivty_data = fetch_ucirepo(id=464) 
+  
+# data (as pandas dataframes) 
+X = superconductivty_data.data.features 
+y = superconductivty_data.data.targets 
+  
+# metadata 
+print(superconductivty_data.metadata) 
+  
+# variable information 
+print(superconductivty_data.variables) 
+
+```
